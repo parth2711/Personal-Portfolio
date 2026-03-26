@@ -15,15 +15,15 @@ export const personalInfo = {
   bio: [
     "I'm a Computer Science student at VIT Bhopal specialising in AI & ML — but I don't stop at models.",
     "I build end-to-end products: from crunching datasets with NumPy & Scikit-learn to shipping full-stack apps with React frontends and FastAPI backends. DSA lives in my C++ files; production systems live in my repos.",
-    "Currently shipping CivicVision — an AI platform that detects urban infrastructure issues in real-time using CNNs. When I'm not coding, you'll find me on a football pitch or chasing problems on LeetCode.",
+    "Currently shipping DevAct — a developer activity aggregation platform. When I'm not coding, you'll find me on a football pitch or chasing problems on LeetCode.",
   ],
-  currentlyBuilding: 'CivicVision',
+  currentlyBuilding: 'DevAct',
 }
 
 export const skills = [
   {
     category: 'Languages',
-    icon: '⚙️',
+    icon: 'code',
     items: [
       { name: 'C++', hot: true },
       { name: 'Python', hot: true },
@@ -34,7 +34,7 @@ export const skills = [
   },
   {
     category: 'Full Stack',
-    icon: '🌐',
+    icon: 'layers',
     items: [
       { name: 'React', hot: true },
       { name: 'FastAPI', hot: true },
@@ -46,7 +46,7 @@ export const skills = [
   },
   {
     category: 'Machine Learning',
-    icon: '🧠',
+    icon: 'cpu',
     items: [
       { name: 'TensorFlow', hot: true },
       { name: 'Scikit-learn', hot: true },
@@ -59,7 +59,7 @@ export const skills = [
   },
   {
     category: 'Tools & CS Core',
-    icon: '🛠️',
+    icon: 'tool',
     items: [
       { name: 'Data Structures & Algorithms', hot: true },
       { name: 'OOP', hot: false },
@@ -82,24 +82,50 @@ export const dsaProficiency = [
 export const projects = [
   {
     id: 1,
-    title: 'CivicVision',
+    title: 'DevAct',
     featured: true,
-    tag: 'AI · Full Stack · Computer Vision',
-    date: 'Feb 2026 – Present',
+    tag: 'Full Stack · Developer Tools',
+    date: 'Ongoing',
     description:
-      'AI-powered civic issue intelligence system that detects urban problems — potholes, garbage overflow, water leakage — from images using real-time CNN classification. Role-based React dashboard for citizens and municipal authorities with geolocation clustering and priority ranking.',
-    stack: ['Python', 'FastAPI', 'React', 'TensorFlow', 'OpenCV', 'PostgreSQL'],
+      'A platform for developers to track and aggregate their activities across platforms. Centralises GitHub activity, competitive programming stats, and project progress into one unified dashboard — built for developers, by a developer.',
+    stack: ['JavaScript', 'React', 'REST APIs'],
     highlights: [
-      '🧠 CNN-based defect classification',
-      '🗺️ Geolocation tagging + clustering',
-      '🔐 Role-based access control',
-      '📊 Real-time priority ranking',
+      'GitHub activity aggregation',
+      'Competitive programming stats',
+      'Unified developer dashboard',
+      'Cross-platform tracking',
     ],
-    github: 'https://github.com/parth2711',
+    github: 'https://github.com/parth2711/devact',
     live: null,
   },
   {
     id: 2,
+    title: 'Kairos',
+    featured: false,
+    tag: 'Full Stack · Productivity',
+    date: '2025 – Present',
+    description:
+      'A productivity and time management platform built to help developers and students track their work sessions, set goals, and analyse their output over time.',
+    stack: ['React', 'JavaScript', 'Node.js'],
+    highlights: [],
+    github: 'https://github.com/parth2711/kairos',
+    live: null,
+  },
+  {
+    id: 3,
+    title: 'CivicVision',
+    featured: false,
+    tag: 'AI · Full Stack · Computer Vision',
+    date: 'Feb 2026 – Present',
+    description:
+      'AI-powered civic issue intelligence system that detects urban problems — potholes, garbage overflow, water leakage — from images using real-time CNN classification. Role-based React dashboard with geolocation clustering and priority ranking.',
+    stack: ['Python', 'FastAPI', 'React', 'TensorFlow', 'OpenCV', 'PostgreSQL'],
+    highlights: [],
+    github: 'https://github.com/parth2711',
+    live: null,
+  },
+  {
+    id: 4,
     title: 'Vaxtrust',
     featured: false,
     tag: 'ML · Data Science',
@@ -112,20 +138,7 @@ export const projects = [
     live: null,
   },
   {
-    id: 3,
-    title: 'DevAct',
-    featured: false,
-    tag: 'Full Stack · Developer Tools',
-    date: 'Ongoing',
-    description:
-      'A platform for developers to track and aggregate their activities across platforms. Centralises GitHub activity, competitive programming stats, and project progress into one dashboard.',
-    stack: ['JavaScript', 'React', 'REST APIs'],
-    highlights: [],
-    github: 'https://github.com/parth2711/devact',
-    live: null,
-  },
-  {
-    id: 4,
+    id: 5,
     title: 'HydroMind AI',
     featured: false,
     tag: 'ML · AgriTech · Transformers',
@@ -138,7 +151,7 @@ export const projects = [
     live: null,
   },
   {
-    id: 5,
+    id: 6,
     title: 'Spam Email Classification',
     featured: false,
     tag: 'ML · NLP',
@@ -150,36 +163,23 @@ export const projects = [
     github: 'https://github.com/parth2711/Spam-Email-Classification',
     live: null,
   },
-  {
-    id: 6,
-    title: 'Iris Classification App',
-    featured: false,
-    tag: 'ML · Streamlit Deployment',
-    date: '2025',
-    description:
-      'End-to-end Iris flower classification using Logistic Regression, deployed as an interactive Streamlit web app. Full ML pipeline from training to production.',
-    stack: ['Python', 'Scikit-learn', 'Streamlit'],
-    highlights: [],
-    github: 'https://github.com/parth2711/Iris-Classification',
-    live: null,
-  },
 ]
 
 export const certifications = [
   {
-    icon: '🐍',
+    icon: 'python',
     title: 'Python for Data Science & Machine Learning Bootcamp',
     issuer: 'Udemy',
     status: 'Completed',
   },
   {
-    icon: '🔩',
+    icon: 'google',
     title: 'The Nuts and Bolts of Machine Learning',
     issuer: 'Google',
     status: 'Completed',
   },
   {
-    icon: '⚡',
+    icon: 'cpp',
     title: 'Beginning C++ Programming — From Beginner to Beyond',
     issuer: 'Udemy',
     status: 'Completed',
@@ -192,14 +192,14 @@ export const education = [
     institution: 'VIT Bhopal University',
     location: 'Sehore, Madhya Pradesh',
     period: 'Aug 2024 – Present',
-    icon: '🎓',
+    icon: 'graduation',
   },
   {
     degree: 'Senior Secondary (Class XII)',
     institution: 'Delhi Public School, Bhilai',
     location: 'Bhilai, Chhattisgarh',
     period: 'Mar 2010 – May 2024',
-    icon: '🏫',
+    icon: 'school',
   },
 ]
 
