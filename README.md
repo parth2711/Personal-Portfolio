@@ -25,7 +25,7 @@ npm run dev
 ## Repository Structure
 
 ```
-parth-portfolio/
+personal-portfolio/
 ├── public/
 │   ├── favicon.svg
 │   ├── .htaccess
