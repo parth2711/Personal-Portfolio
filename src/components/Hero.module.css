@@ -1,0 +1,145 @@
+.hero {
+  position: relative; z-index: 1;
+  min-height: 100vh;
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center; gap: 4rem;
+  padding: 9rem 4rem 4rem;
+  max-width: 1300px; margin: 0 auto;
+}
+
+.matrix {
+  position: fixed; inset: 0; z-index: -1;
+  opacity: 0.055; pointer-events: none;
+}
+
+/* tag */
+.tag {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: var(--font-mono); font-size: 0.72rem;
+  color: var(--accent); background: rgba(163,230,53,0.07);
+  border: 1px solid rgba(163,230,53,0.2);
+  padding: 0.4rem 0.9rem; border-radius: 100px;
+  margin-bottom: 1.4rem;
+}
+
+/* title */
+.title {
+  font-family: var(--font-display);
+  font-weight: 800; line-height: 1.05; letter-spacing: -0.04em;
+  margin-bottom: 1.2rem;
+}
+.hello {
+  display: block; font-family: var(--font-mono);
+  font-size: clamp(0.85rem, 1.3vw, 1.05rem); font-weight: 400;
+  color: var(--text2); letter-spacing: 0.06em; margin-bottom: 0.3rem;
+}
+.name { display: block; font-size: clamp(3rem, 6.5vw, 5.2rem); }
+.nameParth  { color: var(--text); }
+.nameJangir { color: var(--accent); }
+
+/* roles */
+.roles {
+  display: flex; align-items: center;
+  font-family: var(--font-mono); font-size: 1rem;
+  color: var(--accent2); margin-bottom: 1.5rem; min-height: 1.8rem;
+}
+.rolePrefix { opacity: 0.5; }
+.cursor { margin-left: 2px; }
+
+/* desc */
+.desc {
+  color: var(--text2); font-size: 1rem;
+  max-width: 480px; margin-bottom: 2.5rem; line-height: 1.8;
+}
+.desc em { color: var(--accent2); font-style: normal; }
+
+/* actions */
+.actions {
+  display: flex; gap: 0.9rem; margin-bottom: 3rem; flex-wrap: wrap;
+}
+
+/* stats */
+.stats {
+  display: flex; align-items: center; gap: 2.5rem;
+}
+.stat { display: flex; flex-direction: column; }
+.statNum {
+  font-family: var(--font-display);
+  font-size: 2.2rem; font-weight: 800;
+  color: var(--accent); line-height: 1;
+}
+.statLabel {
+  font-family: var(--font-mono); font-size: 0.68rem;
+  color: var(--text3); text-transform: uppercase; letter-spacing: 0.1em;
+  margin-top: 0.15rem;
+}
+
+/* code window */
+.visual { position: relative; }
+.codeWindow {
+  background: var(--bg3);
+  border: 1px solid var(--border2); border-radius: var(--r2);
+  overflow: hidden;
+  box-shadow: 0 28px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(163,230,53,0.04);
+  animation: float 6s ease-in-out infinite;
+}
+.windowBar {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background: rgba(255,255,255,0.025);
+  border-bottom: 1px solid var(--border);
+}
+.dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+.red    { background: #ff5f57; }
+.yellow { background: #ffbd2e; }
+.green  { background: #28c840; }
+.windowTitle {
+  font-family: var(--font-mono); font-size: 0.72rem; color: var(--text3); margin-left: 0.4rem;
+}
+.code {
+  padding: 1.4rem 1.6rem;
+  font-family: var(--font-mono); font-size: 0.79rem; line-height: 1.75;
+  white-space: pre; overflow-x: auto;
+}
+.kw  { color: #c084fc; }
+.cls { color: var(--accent2); }
+.str { color: var(--accent); }
+.fn  { color: #f472b6; }
+
+/* scroll hint */
+.scrollHint {
+  display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+  margin-top: 2.5rem; color: var(--text3);
+  font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.1em;
+}
+.scrollLine {
+  width: 1px; height: 40px;
+  background: linear-gradient(var(--accent), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%,100% { opacity:0.3; transform:scaleY(1); }
+  50%     { opacity:1;   transform:scaleY(1.2); }
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .hero {
+    grid-template-columns: 1fr; text-align: center;
+    padding: 8rem 2rem 4rem;
+    gap: 2rem;
+  }
+  .desc { margin-left: auto; margin-right: auto; }
+  .actions { justify-content: center; }
+  .stats  { justify-content: center; }
+  .visual { display: none; }
+}
+
+@media (max-width: 480px) {
+  .hero { padding: 7rem 1.25rem 3rem; }
+  .name { font-size: 2.8rem; }
+  .statNum { font-size: 1.7rem; }
+  .stats { gap: 1.5rem; }
+  .actions { flex-direction: column; align-items: center; }
+  .actions a { width: 100%; justify-content: center; }
+}

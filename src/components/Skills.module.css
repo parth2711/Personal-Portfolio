@@ -1,0 +1,135 @@
+.skills { background: var(--bg); }
+
+/* ── Tab bar ── */
+.tabs {
+  display: flex; gap: 0.4rem; flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+.tab {
+  font-family: var(--font-mono); font-size: 0.74rem;
+  padding: 0.45rem 1.1rem; border-radius: 8px;
+  border: 1px solid var(--border2); color: var(--text2);
+  background: transparent; cursor: none;
+  transition: all 0.2s;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.tab:hover { color: var(--accent); border-color: var(--accent); background: rgba(163,230,53,0.05); }
+.tabActive { color: var(--accent) !important; border-color: var(--accent) !important; background: rgba(163,230,53,0.08) !important; }
+.tabIcon { font-size: 1rem; }
+
+/* ── Grid layout ── */
+.grid {
+  display: grid; grid-template-columns: 1fr 1.2fr;
+  gap: 3rem; align-items: start;
+}
+
+/* ── Skill cards ── */
+.categoryGrid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+.categoryCard {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r); padding: 1.35rem;
+  transition: border-color 0.3s, transform 0.25s;
+}
+.categoryCard:hover { border-color: var(--border2); transform: translateY(-2px); }
+.catHeader {
+  display: flex; align-items: center; gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+.catIcon { font-size: 1.2rem; }
+.catName {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 0.82rem; color: var(--text);
+}
+.chips { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+.chip {
+  font-family: var(--font-mono); font-size: 0.69rem;
+  padding: 0.28rem 0.65rem;
+  border-radius: 6px; border: 1px solid var(--border2);
+  color: var(--text2); background: var(--bg3);
+  transition: all 0.2s; white-space: nowrap;
+}
+.chip:hover { color: var(--accent); border-color: rgba(163,230,53,0.4); }
+.chipHot {
+  border-color: rgba(163,230,53,0.35) !important;
+  color: var(--accent) !important;
+  background: rgba(163,230,53,0.06) !important;
+}
+.hotDot {
+  display: inline-block; width: 5px; height: 5px;
+  border-radius: 50%; background: var(--accent);
+  margin-right: 4px; vertical-align: middle;
+  box-shadow: 0 0 6px var(--accent);
+}
+
+/* ── DSA panel ── */
+.dsaPanel {
+  background: var(--bg3);
+  border: 1px solid var(--border2); border-radius: var(--r2);
+  padding: 1.75rem;
+}
+.dsaTitle {
+  font-family: var(--font-display); font-size: 1rem;
+  font-weight: 700; color: var(--text); margin-bottom: 0.25rem;
+}
+.dsaSub {
+  font-family: var(--font-mono); font-size: 0.7rem;
+  color: var(--text3); margin-bottom: 1.75rem;
+}
+
+.bar { margin-bottom: 1.2rem; }
+.barTop {
+  display: flex; justify-content: space-between;
+  margin-bottom: 0.4rem;
+}
+.barLabel {
+  font-family: var(--font-mono); font-size: 0.73rem; color: var(--text2);
+}
+.barPct {
+  font-family: var(--font-mono); font-size: 0.73rem; color: var(--accent);
+}
+.barTrack {
+  height: 5px; background: var(--surface2);
+  border-radius: 99px; overflow: hidden;
+}
+.barFill {
+  height: 100%; border-radius: 99px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  transform-origin: left;
+  transition: width 1.1s cubic-bezier(0.22,1,0.36,1);
+  width: 0;
+}
+.barFillActive { /* width set inline */ }
+
+/* stats row */
+.statsRow {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 0.85rem; margin-top: 1.75rem;
+  padding-top: 1.5rem; border-top: 1px solid var(--border);
+}
+.statBox {
+  text-align: center;
+  background: var(--surface); border-radius: var(--r);
+  padding: 0.8rem 0.5rem; border: 1px solid var(--border);
+}
+.statVal {
+  font-family: var(--font-display); font-size: 1.45rem;
+  font-weight: 800; color: var(--accent); line-height: 1;
+}
+.statKey {
+  font-family: var(--font-mono); font-size: 0.62rem;
+  color: var(--text3); text-transform: uppercase;
+  letter-spacing: 0.08em; margin-top: 0.2rem;
+}
+
+@media (max-width: 960px) {
+  .grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .categoryGrid { grid-template-columns: 1fr; }
+  .statsRow { grid-template-columns: repeat(3,1fr); }
+}
+@media (pointer: coarse) { .tab { cursor: pointer; } }
