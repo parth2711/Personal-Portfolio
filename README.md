@@ -13,17 +13,14 @@ npm run dev
 ## Build & Deploy to Hostinger
 ```bash
 npm run build
-# Upload contents of /dist folder to public_html/ on Hostinger
-# OR connect GitHub repo via hPanel → Git → auto-deploy
-```
 
 ## Structure
 ```
 parth-portfolio/
 ├── public/
 │   ├── favicon.svg
-│   ├── .htaccess           ← Apache config for Hostinger
-│   └── Parth_Jangir_Resume.pdf   ← add your resume here
+│   ├── .htaccess           
+│   └── Parth_Jangir_Resume.pdf   
 ├── src/
 │   ├── components/
 │   │   ├── Navbar.jsx
