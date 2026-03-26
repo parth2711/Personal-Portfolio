@@ -24,6 +24,7 @@ npm run dev
 
 ## Repository Structure
 
+```
 parth-portfolio/
 ├── public/
 │   ├── favicon.svg
@@ -50,3 +51,4 @@ parth-portfolio/
 ├── vite.config.js
 ├── package.json
 └── README.md
+```
