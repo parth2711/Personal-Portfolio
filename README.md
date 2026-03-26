@@ -1,26 +1,34 @@
-# Parth Jangir — Portfolio
+## Parth Jangir — Portfolio
 
-**Live:** [parthjangir.in](https://parthjangir.in)
+**Live:** [parthjangir.in](https://www.google.com/search?q=https://parthjangir.in)
 
-Built with React 18 + Vite + Framer Motion.
+-----
 
-## Local Dev
+### Tech Stack
+
+  * **Frontend:** React 18
+  * **Build Tool:** Vite
+  * **Animations:** Framer Motion
+  * **Styling:** CSS3 / Tailwind (if applicable)
+
+-----
+
+### Local Dev
+
 ```bash
 npm install
 npm run dev
 ```
 
-## Build & Deploy to Hostinger
-```bash
-npm run build
+-----
 
-## Structure
-```
+## Repository Structure
+
 parth-portfolio/
 ├── public/
 │   ├── favicon.svg
-│   ├── .htaccess           
-│   └── Parth_Jangir_Resume.pdf   
+│   ├── .htaccess
+│   └── Parth_Jangir_Resume.pdf
 ├── src/
 │   ├── components/
 │   │   ├── Navbar.jsx
@@ -34,7 +42,7 @@ parth-portfolio/
 │   ├── hooks/
 │   │   └── useInView.js
 │   ├── data/
-│   │   └── portfolio.js    ← all content lives here
+│   │   └── portfolio.js
 │   ├── App.jsx
 │   ├── main.jsx
 │   └── index.css
@@ -42,4 +50,3 @@ parth-portfolio/
 ├── vite.config.js
 ├── package.json
 └── README.md
-```
