@@ -1,8 +1,6 @@
-/* ── Reset ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
 
-/* ── Variables ── */
 :root {
   --bg:       #050810;
   --bg2:      #080d1a;
@@ -39,7 +37,6 @@ body {
   cursor: none;
 }
 
-/* mobile: restore cursor */
 @media (pointer: coarse) {
   body { cursor: auto; }
 }
@@ -50,7 +47,6 @@ body {
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
 
-/* ── Grid bg ── */
 body::before {
   content: '';
   position: fixed; inset: 0; z-index: 0;
@@ -61,7 +57,6 @@ body::before {
   pointer-events: none;
 }
 
-/* ── Shared layout ── */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -92,7 +87,6 @@ body::before {
   background: linear-gradient(90deg, var(--border2), transparent);
 }
 
-/* ── Buttons ── */
 .btn-primary {
   display: inline-flex; align-items: center; gap: 0.55rem;
   background: var(--accent); color: #000;
@@ -117,10 +111,8 @@ body::before {
   .btn-primary, .btn-ghost { cursor: pointer; }
 }
 
-/* ── Helpers ── */
 .mono { font-family: var(--font-mono); }
 
-/* ── Fade-up animation ── */
 .fade-up {
   opacity: 0;
   transform: translateY(28px);
@@ -131,11 +123,9 @@ body::before {
   transform: translateY(0);
 }
 
-/* ── Blink ── */
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 .blink { animation: blink 1s step-end infinite; }
 
-/* ── Float ── */
 @keyframes float {
   0%,100% { transform: translateY(0); }
   50%     { transform: translateY(-14px); }

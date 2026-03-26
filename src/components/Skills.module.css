@@ -1,6 +1,5 @@
 .skills { background: var(--bg); }
 
-/* ── Tab bar ── */
 .tabs {
   display: flex; gap: 0.4rem; flex-wrap: wrap;
   margin-bottom: 3rem;
@@ -17,13 +16,11 @@
 .tabActive { color: var(--accent) !important; border-color: var(--accent) !important; background: rgba(163,230,53,0.08) !important; }
 .tabIcon { font-size: 1rem; }
 
-/* ── Grid layout ── */
 .grid {
   display: grid; grid-template-columns: 1fr 1.2fr;
   gap: 3rem; align-items: start;
 }
 
-/* ── Skill cards ── */
 .categoryGrid {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 1.25rem;
@@ -65,7 +62,6 @@
   box-shadow: 0 0 6px var(--accent);
 }
 
-/* ── DSA panel ── */
 .dsaPanel {
   background: var(--bg3);
   border: 1px solid var(--border2); border-radius: var(--r2);
@@ -104,7 +100,6 @@
 }
 .barFillActive { /* width set inline */ }
 
-/* stats row */
 .statsRow {
   display: grid; grid-template-columns: repeat(3,1fr);
   gap: 0.85rem; margin-top: 1.75rem;

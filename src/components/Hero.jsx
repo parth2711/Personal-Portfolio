@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import { personalInfo, roles } from '../data/portfolio'
 import styles from './Hero.module.css'
 
-// Matrix canvas
 function MatrixCanvas() {
   const ref = useRef(null)
   useEffect(() => {
@@ -40,7 +39,6 @@ function MatrixCanvas() {
   return <canvas ref={ref} className={styles.matrix} />
 }
 
-// Typewriter
 function Typewriter() {
   const [text, setText]    = useState('')
   const [ri, setRi]        = useState(0)
@@ -72,7 +70,6 @@ function Typewriter() {
   )
 }
 
-// Animated counter
 function Counter({ target }) {
   const [val, setVal]    = useState(0)
   const ref              = useRef(null)

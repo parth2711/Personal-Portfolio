@@ -8,7 +8,6 @@ import Certifications from './components/Certifications'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 
-// Custom cursor — desktop only
 function Cursor() {
   const dot  = useRef(null)
   const ring = useRef(null)

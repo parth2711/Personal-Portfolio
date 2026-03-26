@@ -12,7 +12,6 @@
   opacity: 0.055; pointer-events: none;
 }
 
-/* tag */
 .tag {
   display: inline-flex; align-items: center; gap: 0.5rem;
   font-family: var(--font-mono); font-size: 0.72rem;
@@ -22,7 +21,6 @@
   margin-bottom: 1.4rem;
 }
 
-/* title */
 .title {
   font-family: var(--font-display);
   font-weight: 800; line-height: 1.05; letter-spacing: -0.04em;
@@ -37,7 +35,6 @@
 .nameParth  { color: var(--text); }
 .nameJangir { color: var(--accent); }
 
-/* roles */
 .roles {
   display: flex; align-items: center;
   font-family: var(--font-mono); font-size: 1rem;
@@ -46,19 +43,16 @@
 .rolePrefix { opacity: 0.5; }
 .cursor { margin-left: 2px; }
 
-/* desc */
 .desc {
   color: var(--text2); font-size: 1rem;
   max-width: 480px; margin-bottom: 2.5rem; line-height: 1.8;
 }
 .desc em { color: var(--accent2); font-style: normal; }
 
-/* actions */
 .actions {
   display: flex; gap: 0.9rem; margin-bottom: 3rem; flex-wrap: wrap;
 }
 
-/* stats */
 .stats {
   display: flex; align-items: center; gap: 2.5rem;
 }
@@ -74,7 +68,6 @@
   margin-top: 0.15rem;
 }
 
-/* code window */
 .visual { position: relative; }
 .codeWindow {
   background: var(--bg3);
@@ -106,7 +99,6 @@
 .str { color: var(--accent); }
 .fn  { color: #f472b6; }
 
-/* scroll hint */
 .scrollHint {
   display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
   margin-top: 2.5rem; color: var(--text3);
@@ -122,7 +114,6 @@
   50%     { opacity:1;   transform:scaleY(1.2); }
 }
 
-/* ── Responsive ── */
 @media (max-width: 1024px) {
   .hero {
     grid-template-columns: 1fr; text-align: center;

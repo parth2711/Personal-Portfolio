@@ -13,7 +13,6 @@ export default function Contact() {
   const handleSubmit = async () => {
     if (!form.name || !form.email || !form.message) return
     setStatus('sending')
-    // Open mail client as fallback
     const body = encodeURIComponent(`Name: ${form.name}\n\n${form.message}`)
     const subject = encodeURIComponent(form.subject || 'Portfolio Contact')
     window.open(`mailto:${personalInfo.email}?subject=${subject}&body=${body}`)

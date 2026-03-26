@@ -29,7 +29,6 @@
 }
 .socialBtn:hover { color: var(--accent); border-color: var(--accent); background: rgba(163,230,53,0.05); }
 
-/* cards */
 .cards {
   display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
 }
@@ -50,7 +49,6 @@
 .cardBody { font-size: 0.82rem; color: var(--text2); line-height: 1.4; }
 .cardSub { font-size: 0.68rem; color: var(--text3); margin-top: 0.15rem; }
 
-/* responsive */
 @media (max-width: 960px) {
   .grid { grid-template-columns: 1fr; gap: 3rem; }
 }

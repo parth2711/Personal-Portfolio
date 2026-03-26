@@ -1,6 +1,5 @@
 .projects { background: var(--bg2); }
 
-/* ── Featured project ── */
 .featured {
   position: relative;
   background: var(--bg3);
@@ -83,7 +82,6 @@
 }
 .iconBtn:hover { color: var(--accent); border-color: var(--accent); background: rgba(163,230,53,0.05); }
 
-/* ── Grid ── */
 .grid {
   display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem;
 }
