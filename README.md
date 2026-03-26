@@ -9,7 +9,7 @@
   * **Frontend:** React 18
   * **Build Tool:** Vite
   * **Animations:** Framer Motion
-  * **Styling:** CSS3 / Tailwind (if applicable)
+  * **Styling:** CSS3
 
 -----
 
