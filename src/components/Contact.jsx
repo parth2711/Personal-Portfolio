@@ -1,22 +1,37 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
+import emailjs from '@emailjs/browser'
 import { personalInfo } from '../data/portfolio'
 import { useInView } from '../hooks/useInView'
 import styles from './Contact.module.css'
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
-  const [status, setStatus] = useState('idle') // idle | sending | sent
+  const formRef = useRef(null)
+  const [fields, setFields] = useState({ name: '', email: '', message: '' })
+  const [status, setStatus] = useState('idle') // idle | sending | sent | error
   const [ref, inView] = useInView()
 
-  const update = (k) => (e) => setForm(f => ({ ...f, [k]: e.target.value }))
+  const set = k => e => setFields(f => ({ ...f, [k]: e.target.value }))
 
-  const handleSubmit = async () => {
-    if (!form.name || !form.email || !form.message) return
+  const handleSend = async () => {
+    if (!fields.name || !fields.email || !fields.message) return
     setStatus('sending')
-    const body = encodeURIComponent(`Name: ${form.name}\n\n${form.message}`)
-    const subject = encodeURIComponent(form.subject || 'Portfolio Contact')
-    window.open(`mailto:${personalInfo.email}?subject=${subject}&body=${body}`)
-    setTimeout(() => setStatus('sent'), 800)
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          from_name:  fields.name,
+          from_email: fields.email,
+          message:    fields.message,
+          to_email:   personalInfo.email,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      )
+      setStatus('sent')
+      setFields({ name: '', email: '', message: '' })
+    } catch {
+      setStatus('error')
+    }
   }
 
   return (
@@ -28,76 +43,111 @@ export default function Contact() {
           <div className="section-line" />
         </div>
 
-        <div ref={ref} className={`${styles.grid} fade-up ${inView ? 'visible' : ''}`}>
-          {/* Left */}
-          <div>
+        <div ref={ref} className={`${styles.layout} fade-up ${inView ? 'visible' : ''}`}>
+
+          {/* ── Left ── */}
+          <div className={styles.left}>
             <h3 className={styles.heading}>
-              Let's build something <span>great</span> together
+              Let's work<br />on something.
             </h3>
+
             <p className={styles.sub}>
-              Open to internships, collaborations, and interesting problems. Drop me a message — I respond fast.
+              I'm a first-year student with time, energy, and real projects under my belt.
+              If you're building something interesting or have an internship in mind, I'd
+              like to hear about it.
             </p>
 
-            {[
-              { icon: '✉️', label: 'Email', value: personalInfo.email, href: `mailto:${personalInfo.email}` },
-              { icon: '📍', label: 'Location', value: personalInfo.location, href: null },
-              { icon: '💼', label: 'LinkedIn', value: 'parth-jangir', href: personalInfo.linkedin },
-            ].map(item => (
-              <div key={item.label} className={styles.infoItem}>
-                <div className={styles.infoIcon}>{item.icon}</div>
-                <div>
-                  <div className={styles.infoLabel}>{item.label}</div>
-                  {item.href
-                    ? <a href={item.href} target="_blank" rel="noreferrer" className={styles.infoValue}>{item.value}</a>
-                    : <div className={styles.infoValue}>{item.value}</div>}
-                </div>
-              </div>
-            ))}
+            <div className={styles.contactLine}>
+              <span className={styles.contactLabel}>Email</span>
+              <a href={`mailto:${personalInfo.email}`} className={styles.contactVal}>
+                {personalInfo.email}
+              </a>
+            </div>
+            <div className={styles.contactLine}>
+              <span className={styles.contactLabel}>Location</span>
+              <span className={styles.contactVal}>{personalInfo.location}</span>
+            </div>
+            <div className={styles.contactLine}>
+              <span className={styles.contactLabel}>LinkedIn</span>
+              <a href={personalInfo.linkedin} target="_blank" rel="noreferrer" className={styles.contactVal}>
+                /in/parth-jangir
+              </a>
+            </div>
 
-            <div className={styles.availability}>
-              <span className={styles.pulse} />
-              Available for opportunities
+            <div className={styles.available}>
+              <span className={styles.availDot} />
+              Available — responding within 24h
             </div>
           </div>
 
-          {/* Right */}
-          <div className={styles.form}>
-            <p className={styles.formTitle}>// send_message.exe</p>
-
+          {/* ── Right: form ── */}
+          <div className={styles.formWrap}>
             {status === 'sent' ? (
-              <div className={styles.success}>
-                ✅ Message opened in your mail client!<br/>
-                <span style={{ color: 'var(--text3)', fontSize: '0.75rem' }}>Alternatively email me at {personalInfo.email}</span>
+              <div className={styles.sent}>
+                <div className={styles.sentCheck}>
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="2.2">
+                    <polyline points="20 6 9 17 4 12"/>
+                  </svg>
+                </div>
+                <p className={styles.sentHeading}>Sent.</p>
+                <p className={styles.sentSub}>I'll get back to you soon.</p>
               </div>
             ) : (
               <>
-                <div className={styles.row}>
+                <div className={styles.fieldRow}>
                   <div className={styles.field}>
-                    <label className={styles.label}>name *</label>
-                    <input className={styles.input} placeholder="Arjun Sharma" value={form.name} onChange={update('name')} />
+                    <label className={styles.label}>Name</label>
+                    <input
+                      className={styles.input}
+                      placeholder="Your name"
+                      value={fields.name}
+                      onChange={set('name')}
+                    />
                   </div>
                   <div className={styles.field}>
-                    <label className={styles.label}>email *</label>
-                    <input className={styles.input} type="email" placeholder="arjun@example.com" value={form.email} onChange={update('email')} />
+                    <label className={styles.label}>Email</label>
+                    <input
+                      className={styles.input}
+                      type="email"
+                      placeholder="your@email.com"
+                      value={fields.email}
+                      onChange={set('email')}
+                    />
                   </div>
                 </div>
                 <div className={styles.field}>
-                  <label className={styles.label}>subject</label>
-                  <input className={styles.input} placeholder="Let's collaborate on..." value={form.subject} onChange={update('subject')} />
+                  <label className={styles.label}>Message</label>
+                  <textarea
+                    className={styles.textarea}
+                    placeholder="What's on your mind?"
+                    value={fields.message}
+                    onChange={set('message')}
+                  />
                 </div>
-                <div className={styles.field}>
-                  <label className={styles.label}>message *</label>
-                  <textarea className={styles.textarea} placeholder="Tell me about your project or opportunity..." value={form.message} onChange={update('message')} />
-                </div>
+
+                {status === 'error' && (
+                  <p className={styles.errorMsg}>
+                    Something went wrong — email me directly at {personalInfo.email}
+                  </p>
+                )}
+
                 <button
-                  className={`${styles.submit} ${status === 'sending' ? styles.submitSending : ''}`}
-                  onClick={handleSubmit}
+                  className={`${styles.btn} ${status === 'sending' ? styles.btnSending : ''}`}
+                  onClick={handleSend}
+                  disabled={status === 'sending'}
                 >
-                  {status === 'sending' ? 'Sending...' : 'Send Message →'}
+                  {status === 'sending' ? 'Sending…' : 'Send'}
+                  {status !== 'sending' && (
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                      <line x1="22" y1="2" x2="11" y2="13"/>
+                      <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                    </svg>
+                  )}
                 </button>
               </>
             )}
           </div>
+
         </div>
       </div>
     </section>

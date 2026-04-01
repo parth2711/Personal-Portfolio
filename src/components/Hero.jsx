@@ -1,179 +1,117 @@
-import { useEffect, useRef, useState } from 'react'
-import { personalInfo, roles } from '../data/portfolio'
+import { useEffect, useRef } from 'react'
+import { personalInfo } from '../data/portfolio'
 import styles from './Hero.module.css'
 
-function MatrixCanvas() {
+// Subtle ambient canvas — not matrix rain, just slow drifting particles
+function AmbientCanvas() {
   const ref = useRef(null)
   useEffect(() => {
     const canvas = ref.current
     const ctx = canvas.getContext('2d')
-    let drops = []
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789<>/{}[]=+-*&|!#@$'
+    let particles = []
+    let raf
 
     const init = () => {
       canvas.width  = window.innerWidth
       canvas.height = window.innerHeight
-      const cols = Math.floor(canvas.width / 14)
-      drops = Array(cols).fill(1)
+      particles = Array.from({ length: 55 }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.2 + 0.3,
+        dx: (Math.random() - 0.5) * 0.18,
+        dy: (Math.random() - 0.5) * 0.18,
+        o: Math.random() * 0.35 + 0.05,
+      }))
     }
 
     const draw = () => {
-      ctx.fillStyle = 'rgba(5,8,16,0.05)'
-      ctx.fillRect(0, 0, canvas.width, canvas.height)
-      ctx.fillStyle = '#a3e635'
-      ctx.font = '13px JetBrains Mono, monospace'
-      drops.forEach((y, i) => {
-        ctx.fillText(chars[Math.floor(Math.random() * chars.length)], i * 14, y * 14)
-        if (y * 14 > canvas.height && Math.random() > 0.975) drops[i] = 0
-        drops[i]++
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      particles.forEach(p => {
+        ctx.beginPath()
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
+        ctx.fillStyle = `rgba(163,230,53,${p.o})`
+        ctx.fill()
+        p.x += p.dx
+        p.y += p.dy
+        if (p.x < 0 || p.x > canvas.width)  p.dx *= -1
+        if (p.y < 0 || p.y > canvas.height) p.dy *= -1
       })
+      raf = requestAnimationFrame(draw)
     }
 
     init()
-    const timer = setInterval(draw, 55)
-    const onResize = () => init()
-    window.addEventListener('resize', onResize)
-    return () => { clearInterval(timer); window.removeEventListener('resize', onResize) }
+    draw()
+    window.addEventListener('resize', init)
+    return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', init) }
   }, [])
-
-  return <canvas ref={ref} className={styles.matrix} />
+  return <canvas ref={ref} className={styles.ambient} />
 }
 
-function Typewriter() {
-  const [text, setText]    = useState('')
-  const [ri, setRi]        = useState(0)
-  const [deleting, setDel] = useState(false)
-
-  useEffect(() => {
-    const current = roles[ri]
-    let timeout
-
-    if (!deleting && text === current) {
-      timeout = setTimeout(() => setDel(true), 1800)
-    } else if (deleting && text === '') {
-      setDel(false)
-      setRi(r => (r + 1) % roles.length)
-    } else {
-      timeout = setTimeout(() => {
-        setText(deleting ? current.slice(0, text.length - 1) : current.slice(0, text.length + 1))
-      }, deleting ? 45 : 80)
-    }
-    return () => clearTimeout(timeout)
-  }, [text, ri, deleting])
-
-  return (
-    <div className={styles.roles}>
-      <span className={styles.rolePrefix}>{'> '}</span>
-      <span className={styles.roleText}>{text}</span>
-      <span className={`${styles.cursor} blink`}>_</span>
-    </div>
-  )
-}
-
-function Counter({ target }) {
-  const [val, setVal]    = useState(0)
-  const ref              = useRef(null)
-  const started          = useRef(false)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting && !started.current) {
-        started.current = true
-        const dur = 1200
-        const step = target / (dur / 16)
-        let v = 0
-        const tick = () => {
-          v = Math.min(v + step, target)
-          setVal(Math.floor(v))
-          if (v < target) requestAnimationFrame(tick)
-        }
-        tick()
-      }
-    }, { threshold: 0.5 })
-    if (ref.current) observer.observe(ref.current)
-    return () => observer.disconnect()
-  }, [target])
-
-  return <span ref={ref}>{val}</span>
-}
+const now = [
+  { key: 'Building',   val: 'DevAct',                   sub: 'developer activity platform' },
+  { key: 'Studying',   val: 'B.Tech CSE, AI & ML',       sub: 'VIT Bhopal · 2024–2028' },
+  { key: 'Competing',  val: 'Codeforces · LeetCode',     sub: 'Div. 3/4 · 200+ problems' },
+  { key: 'Available',  val: 'Internships · Collabs',      sub: 'jangirparth@gmail.com' },
+]
 
 export default function Hero() {
   return (
     <section id="hero" className={styles.hero}>
-      <MatrixCanvas />
+      <AmbientCanvas />
 
-      <div className={styles.content}>
-        <div className={styles.tag}>
-          <span className="blink">▋</span>
-          <span className="mono"> init portfolio.exe</span>
-        </div>
+      {/* ── Left ── */}
+      <div className={styles.left}>
+        <p className={styles.location}>Bhilai, India · 2024</p>
 
-        <h1 className={styles.title}>
-          <span className={styles.hello}>Hello, I'm</span>
-          <span className={styles.name}>
-            <span className={styles.nameParth}>Parth</span>
-            <span className={styles.nameJangir}> Jangir</span>
-          </span>
+        <h1 className={styles.name}>
+          <span className={styles.nameFirst}>Parth</span>
+          <span className={styles.nameLast}>Jangir</span>
         </h1>
 
-        <Typewriter />
+        <p className={styles.role}>
+          Software Engineer &amp; ML Builder
+        </p>
 
         <p className={styles.desc}>
-          Building systems where <em>intelligence meets infrastructure</em> —
-          from ML pipelines to full-stack platforms, pixel-perfect UIs to optimised algorithms.
+          I write C++ for algorithms, Python for machine learning,
+          and React for the products that tie it all together.
+          Currently a CS student at VIT Bhopal — building in public.
         </p>
 
         <div className={styles.actions}>
-          <a href="#projects" className="btn-primary"
-            onClick={e => { e.preventDefault(); document.getElementById('projects')?.scrollIntoView({ behavior:'smooth' }) }}>
-            View Projects
-            <ArrowIcon />
+          <a
+            href="#projects"
+            className="btn-primary"
+            onClick={e => { e.preventDefault(); document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }) }}
+          >
+            See my work
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
           </a>
-          <a href={personalInfo.resumeUrl} download className="btn-ghost">
-            Download Resume
-          </a>
-        </div>
-
-        <div className={styles.stats}>
-          {[['9','Repos'],['6','Projects'],['3','Certs']].map(([n,l]) => (
-            <div key={l} className={styles.stat}>
-              <span className={styles.statNum}><Counter target={+n} />+</span>
-              <span className={styles.statLabel}>{l}</span>
-            </div>
-          ))}
+          <a href={personalInfo.resumeUrl} download className="btn-ghost">Resume</a>
         </div>
       </div>
 
-      <div className={styles.visual}>
-        <div className={styles.codeWindow}>
-          <div className={styles.windowBar}>
-            <span className={`${styles.dot} ${styles.red}`}   />
-            <span className={`${styles.dot} ${styles.yellow}`}/>
-            <span className={`${styles.dot} ${styles.green}`} />
-            <span className={styles.windowTitle}>parth.cpp</span>
+      {/* ── Right: status panel ── */}
+      <div className={styles.right}>
+        <div className={styles.statusPanel}>
+          <p className={styles.statusTitle}>Now</p>
+          <div className={styles.statusList}>
+            {now.map(item => (
+              <div key={item.key} className={styles.statusRow}>
+                <span className={styles.statusKey}>{item.key}</span>
+                <div className={styles.statusVal}>
+                  <span className={styles.statusMain}>{item.val}</span>
+                  <span className={styles.statusSub}>{item.sub}</span>
+                </div>
+              </div>
+            ))}
           </div>
-          <pre className={styles.code}><code>{`\
-`}<span className={styles.kw}>class</span>{` `}<span className={styles.cls}>Engineer</span>{` {
-  `}<span className={styles.kw}>private</span>{`:
-    string name   = `}<span className={styles.str}>"Parth Jangir"</span>{`;
-    string focus  = `}<span className={styles.str}>"Full Stack + ML"</span>{`;
-    string status = `}<span className={styles.str}>"Building CivicVision"</span>{`;
-
-  `}<span className={styles.kw}>public</span>{`:
-    vector<string> stack() {
-      `}<span className={styles.kw}>return</span>{` {
-        `}<span className={styles.str}>"C++"</span>{`, `}<span className={styles.str}>"Python"</span>{`, `}<span className={styles.str}>"React"</span>{`,
-        `}<span className={styles.str}>"FastAPI"</span>{`, `}<span className={styles.str}>"TensorFlow"</span>{`,
-        `}<span className={styles.str}>"PostgreSQL"</span>{`, `}<span className={styles.str}>"OpenCV"</span>{`
-      };
-    }
-
-    `}<span className={styles.fn}>solve</span>{`(Problem& p) {
-      `}<span className={styles.kw}>while</span>{` (!p.solved())
-        p.approach(DSA + ML);
-      `}<span className={styles.kw}>return</span>{` elegantSolution;
-    }
-};`}</code></pre>
+          <div className={styles.statusFooter}>
+            <span className={styles.dot} />
+            <span>Open to work</span>
+          </div>
         </div>
 
         <div className={styles.scrollHint}>
@@ -184,9 +122,3 @@ export default function Hero() {
     </section>
   )
 }
-
-const ArrowIcon = () => (
-  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-    <path d="M5 12h14M12 5l7 7-7 7"/>
-  </svg>
-)

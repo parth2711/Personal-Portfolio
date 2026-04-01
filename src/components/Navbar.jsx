@@ -27,7 +27,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''} ${open ? styles.open : ''}`}>
+    <nav className={`${styles.nav} ${scrolled ? styles.scrolled : ''}`}>
       <div className={styles.logo}>
         <span className={styles.bracket}>&lt;</span>
         <span className={styles.logoText}>PJ</span>
@@ -48,18 +48,16 @@ export default function Navbar() {
       </ul>
 
       <div className={styles.actions}>
-        <a href={personalInfo.resumeUrl} download className={styles.resumeBtn}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/>
-          </svg>
-          Resume
-        </a>
         <a href={personalInfo.github} target="_blank" rel="noreferrer" className={styles.ghBtn}>
           <GithubIcon /> GitHub
         </a>
       </div>
 
-      <button className={`${styles.toggle} ${open ? styles.toggleOpen : ''}`} onClick={() => setOpen(o => !o)} aria-label="menu">
+      <button
+        className={`${styles.toggle} ${open ? styles.toggleOpen : ''}`}
+        onClick={() => setOpen(o => !o)}
+        aria-label="menu"
+      >
         <span /><span /><span />
       </button>
     </nav>

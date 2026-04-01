@@ -1,57 +1,103 @@
 .about { background: var(--bg2); }
 
 .grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 5rem; align-items: start;
+  display: grid; grid-template-columns: 1.1fr 0.9fr;
+  gap: 6rem; align-items: start;
 }
 
+/* ── Left ── */
 .lead {
-  font-size: 1.15rem; color: var(--text);
-  margin-bottom: 1.1rem; line-height: 1.65;
-}
-.lead strong { color: var(--accent2); font-weight: 700; }
-
-.para { color: var(--text2); margin-bottom: 1rem; font-size: 0.97rem; }
-.highlight {
-  color: var(--accent); font-weight: 600;
-  font-family: var(--font-mono); font-size: 0.92em;
+  font-size: 1.08rem; color: var(--text);
+  line-height: 1.8; margin-bottom: 1.25rem;
+  font-weight: 400;
 }
 
-.socials {
-  display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: 1.75rem;
+.para {
+  color: var(--text2); font-size: 0.96rem;
+  line-height: 1.8; margin-bottom: 1.1rem;
 }
-.socialBtn {
-  font-family: var(--font-mono); font-size: 0.76rem;
+.para strong { color: var(--accent); font-weight: 600; }
+
+.links {
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  margin-top: 2rem;
+}
+.link {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-family: var(--font-mono); font-size: 0.74rem;
   color: var(--text2); text-decoration: none;
   border: 1px solid var(--border2); border-radius: 8px;
-  padding: 0.42rem 0.9rem;
+  padding: 0.38rem 0.85rem;
   transition: color 0.2s, border-color 0.2s, background 0.2s;
 }
-.socialBtn:hover { color: var(--accent); border-color: var(--accent); background: rgba(163,230,53,0.05); }
+.link:hover {
+  color: var(--accent); border-color: var(--accent);
+  background: rgba(163,230,53,0.05);
+}
 
-.cards {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
-}
-.card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-top: 2px solid var(--card-accent);
-  border-radius: var(--r); padding: 1.25rem;
-  display: flex; align-items: flex-start; gap: 0.85rem;
-  transition: border-color 0.3s, transform 0.22s;
-}
-.card:hover { transform: translateY(-3px); border-color: var(--card-accent); }
-.cardIcon { font-size: 1.45rem; flex-shrink: 0; }
-.cardTitle {
-  font-family: var(--font-display); font-size: 0.82rem;
-  font-weight: 700; color: var(--text); margin-bottom: 0.22rem;
-}
-.cardBody { font-size: 0.82rem; color: var(--text2); line-height: 1.4; }
-.cardSub { font-size: 0.68rem; color: var(--text3); margin-top: 0.15rem; }
+/* ── Right ── */
+.block { margin-bottom: 2.5rem; }
+.block:last-child { margin-bottom: 0; }
 
+.blockTitle {
+  font-family: var(--font-mono); font-size: 0.65rem;
+  color: var(--accent); text-transform: uppercase;
+  letter-spacing: 0.16em; margin-bottom: 1.25rem;
+}
+
+/* Education */
+.edu {
+  display: flex; gap: 1rem; align-items: flex-start;
+}
+
+.eduActive {
+  width: 3px; flex-shrink: 0;
+  background: var(--accent);
+  border-radius: 2px; min-height: 60px;
+  box-shadow: 0 0 8px rgba(163,230,53,0.35);
+}
+.eduDot {
+  width: 3px; flex-shrink: 0;
+  background: var(--border2);
+  border-radius: 2px; min-height: 50px;
+}
+
+.eduDegree {
+  font-size: 0.92rem; color: var(--text);
+  font-weight: 600; margin-bottom: 0.2rem;
+}
+.eduPlace {
+  font-size: 0.83rem; color: var(--text2);
+  margin-bottom: 0.2rem;
+}
+.eduPeriod {
+  font-family: var(--font-mono); font-size: 0.68rem;
+  color: var(--text3);
+}
+
+/* Focus list */
+.focusList { display: flex; flex-direction: column; }
+
+.focusRow {
+  display: flex; justify-content: space-between;
+  align-items: baseline; gap: 1rem;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.focusRow:last-child { border-bottom: none; }
+
+.focusArea {
+  font-size: 0.9rem; color: var(--text); font-weight: 500;
+}
+.focusNote {
+  font-family: var(--font-mono); font-size: 0.69rem;
+  color: var(--text3); text-align: right; white-space: nowrap;
+}
+
+/* Responsive */
 @media (max-width: 960px) {
   .grid { grid-template-columns: 1fr; gap: 3rem; }
 }
-@media (max-width: 480px) {
-  .cards { grid-template-columns: 1fr; }
+@media (max-width: 600px) {
+  .focusNote { display: none; }
 }

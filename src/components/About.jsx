@@ -2,38 +2,6 @@ import { personalInfo } from '../data/portfolio'
 import { useInView } from '../hooks/useInView'
 import styles from './About.module.css'
 
-const GraduationIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
-    <path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/>
-    <path d="M6 12v5c0 2 6 3 6 3s6-1 6-3v-5"/>
-  </svg>
-)
-const PinIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
-    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
-    <circle cx="12" cy="10" r="3"/>
-  </svg>
-)
-const ZapIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
-    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-  </svg>
-)
-const TargetIcon = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7">
-    <circle cx="12" cy="12" r="10"/>
-    <circle cx="12" cy="12" r="6"/>
-    <circle cx="12" cy="12" r="2"/>
-  </svg>
-)
-
-const infoCards = [
-  { Icon: GraduationIcon, title: 'Education',         body: 'B.Tech CSE (AI & ML)',   sub: 'VIT Bhopal · 2024–Present', color: 'var(--accent)'  },
-  { Icon: PinIcon,        title: 'Location',          body: 'Bhilai, Chhattisgarh',  sub: 'India',                     color: 'var(--accent2)' },
-  { Icon: ZapIcon,        title: 'Currently Building',body: 'DevAct',                sub: 'Developer Activity Platform',color: 'var(--accent3)' },
-  { Icon: TargetIcon,     title: 'Interests',         body: 'Football · Table Tennis',sub: 'DSA · AI Research',        color: 'var(--accent4)' },
-]
-
 export default function About() {
   const [ref, inView] = useInView()
 
@@ -42,50 +10,99 @@ export default function About() {
       <div className="container">
         <div className="section-header">
           <span className="section-number mono">01</span>
-          <h2 className="section-title">About Me</h2>
+          <h2 className="section-title">About</h2>
           <div className="section-line" />
         </div>
 
         <div ref={ref} className={`${styles.grid} fade-up ${inView ? 'visible' : ''}`}>
+
+          {/* ── Left: who I actually am ── */}
           <div className={styles.left}>
             <p className={styles.lead}>
-              I'm a <strong>Computer Science student at VIT Bhopal</strong> specialising in AI & ML — but I don't stop at models.
+              I'm Parth — a first-year CS student at VIT Bhopal, specialising in AI & ML.
+              I started coding seriously in class XII, went deep on C++, and haven't stopped
+              building since.
             </p>
-            {personalInfo.bio.slice(1).map((p, i) => (
-              <p key={i} className={styles.para}>
-                {p.includes('DevAct')
-                  ? p.split('DevAct').map((part, j) => j === 0
-                    ? <span key={j}>{part}<span className={styles.highlight}>DevAct</span></span>
-                    : <span key={j}>{part}</span>)
-                  : p}
-              </p>
-            ))}
 
-            <div className={styles.socials}>
+            <p className={styles.para}>
+              My work sits at the intersection of algorithms and product. I care about the DSA
+              that makes software fast, the architecture that makes it scale, and the UX that
+              makes it worth using. I don't treat these as separate disciplines.
+            </p>
+
+            <p className={styles.para}>
+              Right now I'm building <strong>DevAct</strong> — a dashboard that pulls a
+              developer's activity from GitHub, LeetCode, and Codeforces into one place.
+              The idea came from being tired of switching between three tabs to understand
+              my own progress.
+            </p>
+
+            <p className={styles.para}>
+              Outside a screen: football on weekends, table tennis when there's time,
+              and the occasional Codeforces contest on a Friday night.
+            </p>
+
+            <div className={styles.links}>
               {[
-                { label:'LinkedIn',   href: personalInfo.linkedin },
-                { label:'LeetCode',   href: personalInfo.leetcode },
-                { label:'Codeforces', href: personalInfo.codeforces },
-                { label:'GitHub',     href: personalInfo.github },
+                { label: 'GitHub',     href: personalInfo.github },
+                { label: 'LinkedIn',   href: personalInfo.linkedin },
+                { label: 'LeetCode',   href: personalInfo.leetcode },
+                { label: 'Codeforces', href: personalInfo.codeforces },
               ].map(s => (
-                <a key={s.label} href={s.href} target="_blank" rel="noreferrer" className={styles.socialBtn}>
+                <a key={s.label} href={s.href} target="_blank" rel="noreferrer" className={styles.link}>
                   {s.label}
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
+                  </svg>
                 </a>
               ))}
             </div>
           </div>
 
-          <div className={styles.cards}>
-            {infoCards.map((c, i) => (
-              <div key={i} className={styles.card} style={{ '--card-accent': c.color }}>
-                <span className={styles.cardIcon} style={{ color: c.color }}><c.Icon /></span>
+          {/* ── Right: education + specifics ── */}
+          <div className={styles.right}>
+
+            {/* Education block */}
+            <div className={styles.block}>
+              <h3 className={styles.blockTitle}>Education</h3>
+
+              <div className={styles.edu}>
+                <div className={styles.eduActive} />
                 <div>
-                  <h4 className={styles.cardTitle}>{c.title}</h4>
-                  <p className={styles.cardBody}>{c.body}</p>
-                  <p className={`mono ${styles.cardSub}`}>{c.sub}</p>
+                  <p className={styles.eduDegree}>B.Tech — Computer Science (AI & ML)</p>
+                  <p className={styles.eduPlace}>VIT Bhopal University</p>
+                  <p className={styles.eduPeriod}>Aug 2024 – 2028</p>
                 </div>
               </div>
-            ))}
+
+              <div className={styles.edu} style={{ marginTop: '1.25rem' }}>
+                <div className={styles.eduDot} />
+                <div>
+                  <p className={styles.eduDegree}>Senior Secondary · Science</p>
+                  <p className={styles.eduPlace}>Delhi Public School, Bhilai</p>
+                  <p className={styles.eduPeriod}>Until 2024</p>
+                </div>
+              </div>
+            </div>
+
+            {/* What I focus on */}
+            <div className={styles.block}>
+              <h3 className={styles.blockTitle}>Focus areas</h3>
+              <div className={styles.focusList}>
+                {[
+                  { area: 'Algorithms & DSA', note: 'C++ · competitive programming' },
+                  { area: 'Full-stack dev',    note: 'React · FastAPI · PostgreSQL' },
+                  { area: 'Machine learning',  note: 'TensorFlow · OpenCV · Scikit-learn' },
+                  { area: 'Systems thinking',  note: 'architecture · performance · scale' },
+                ].map(f => (
+                  <div key={f.area} className={styles.focusRow}>
+                    <span className={styles.focusArea}>{f.area}</span>
+                    <span className={styles.focusNote}>{f.note}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
