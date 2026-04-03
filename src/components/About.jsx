@@ -19,27 +19,27 @@ export default function About() {
           {/* ── Left: who I actually am ── */}
           <div className={styles.left}>
             <p className={styles.lead}>
-              I'm Parth — a first-year CS student at VIT Bhopal, specialising in AI & ML.
-              I started coding seriously in class XII, went deep on C++, and haven't stopped
-              building since.
+              I'm Parth — first-year CS at VIT Bhopal.
+              Got serious about programming in class XI, started with C++,
+              and it sort of spiralled from there into ML, full-stack, and competitive programming.
             </p>
 
             <p className={styles.para}>
-              My work sits at the intersection of algorithms and product. I care about the DSA
-              that makes software fast, the architecture that makes it scale, and the UX that
-              makes it worth using. I don't treat these as separate disciplines.
+              I don't have a strong separation between "learning" and "building."
+              Most of what I know came from making something, breaking it, and figuring out why.
+              That's how DevAct started — I wanted to track my own progress across platforms
+              and got tired of opening three different tabs every time.
             </p>
 
             <p className={styles.para}>
-              Right now I'm building <strong>DevAct</strong> — a dashboard that pulls a
-              developer's activity from GitHub, LeetCode, and Codeforces into one place.
-              The idea came from being tired of switching between three tabs to understand
-              my own progress.
+              I'm comfortable across the stack: C++ for algorithms, Python for data and backends,
+              React when something needs to be usable. I try not to make things more complicated
+              than they need to be.
             </p>
 
             <p className={styles.para}>
-              Outside a screen: football on weekends, table tennis when there's time,
-              and the occasional Codeforces contest on a Friday night.
+              Off the screen: I play football on weekends, pick up table tennis when someone's
+              free, and occasionally do a Codeforces round late on a Friday.
             </p>
 
             <div className={styles.links}>
@@ -71,16 +71,16 @@ export default function About() {
                 <div>
                   <p className={styles.eduDegree}>B.Tech — Computer Science (AI & ML)</p>
                   <p className={styles.eduPlace}>VIT Bhopal University</p>
-                  <p className={styles.eduPeriod}>Aug 2024 – 2028</p>
+                  <p className={styles.eduPeriod}>2024 – 2028</p>
                 </div>
               </div>
 
               <div className={styles.edu} style={{ marginTop: '1.25rem' }}>
                 <div className={styles.eduDot} />
                 <div>
-                  <p className={styles.eduDegree}>Senior Secondary · Science</p>
+                  <p className={styles.eduDegree}>Senior Secondary — Science (Class XII)</p>
                   <p className={styles.eduPlace}>Delhi Public School, Bhilai</p>
-                  <p className={styles.eduPeriod}>Until 2024</p>
+                  <p className={styles.eduPeriod}>2010 – 2024</p>
                 </div>
               </div>
             </div>
@@ -90,10 +90,10 @@ export default function About() {
               <h3 className={styles.blockTitle}>Focus areas</h3>
               <div className={styles.focusList}>
                 {[
-                  { area: 'Algorithms & DSA', note: 'C++ · competitive programming' },
-                  { area: 'Full-stack dev',    note: 'React · FastAPI · PostgreSQL' },
-                  { area: 'Machine learning',  note: 'TensorFlow · OpenCV · Scikit-learn' },
-                  { area: 'Systems thinking',  note: 'architecture · performance · scale' },
+                  { area: 'Algorithms & DSA',   note: 'C++ · competitive programming' },
+                  { area: 'Full-stack dev',      note: 'React · FastAPI · PostgreSQL' },
+                  { area: 'Machine learning',    note: 'TensorFlow · OpenCV · Scikit-learn' },
+                  { area: 'Shipping products',   note: 'idea → code → deployed' },
                 ].map(f => (
                   <div key={f.area} className={styles.focusRow}>
                     <span className={styles.focusArea}>{f.area}</span>

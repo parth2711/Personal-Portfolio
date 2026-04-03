@@ -1,67 +1,21 @@
-import { useEffect, useRef } from 'react'
 import { personalInfo } from '../data/portfolio'
 import styles from './Hero.module.css'
 
-// Subtle ambient canvas — not matrix rain, just slow drifting particles
-function AmbientCanvas() {
-  const ref = useRef(null)
-  useEffect(() => {
-    const canvas = ref.current
-    const ctx = canvas.getContext('2d')
-    let particles = []
-    let raf
-
-    const init = () => {
-      canvas.width  = window.innerWidth
-      canvas.height = window.innerHeight
-      particles = Array.from({ length: 55 }, () => ({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        r: Math.random() * 1.2 + 0.3,
-        dx: (Math.random() - 0.5) * 0.18,
-        dy: (Math.random() - 0.5) * 0.18,
-        o: Math.random() * 0.35 + 0.05,
-      }))
-    }
-
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-      particles.forEach(p => {
-        ctx.beginPath()
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(163,230,53,${p.o})`
-        ctx.fill()
-        p.x += p.dx
-        p.y += p.dy
-        if (p.x < 0 || p.x > canvas.width)  p.dx *= -1
-        if (p.y < 0 || p.y > canvas.height) p.dy *= -1
-      })
-      raf = requestAnimationFrame(draw)
-    }
-
-    init()
-    draw()
-    window.addEventListener('resize', init)
-    return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', init) }
-  }, [])
-  return <canvas ref={ref} className={styles.ambient} />
-}
 
 const now = [
-  { key: 'Building',   val: 'DevAct',                   sub: 'developer activity platform' },
-  { key: 'Studying',   val: 'B.Tech CSE, AI & ML',       sub: 'VIT Bhopal · 2024–2028' },
-  { key: 'Competing',  val: 'Codeforces · LeetCode',     sub: 'Div. 3/4 · 200+ problems' },
-  { key: 'Available',  val: 'Internships · Collabs',      sub: 'jangirparth@gmail.com' },
+  { key: 'Building',   val: 'DevAct',                 sub: 'developer activity aggregator' },
+  { key: 'Studying',   val: 'B.Tech CSE — AI & ML',   sub: 'VIT Bhopal · 2024–2028' },
+  { key: 'Competing',  val: 'Codeforces · LeetCode',  sub: 'Div. 3/4 · 200+ problems' },
+  { key: 'Open to',    val: 'Internships',             sub: 'jangirparth@gmail.com' },
 ]
 
 export default function Hero() {
   return (
     <section id="hero" className={styles.hero}>
-      <AmbientCanvas />
 
       {/* ── Left ── */}
       <div className={styles.left}>
-        <p className={styles.location}>Bhilai, India · 2024</p>
+        <p className={styles.location}>Bhilai, India</p>
 
         <h1 className={styles.name}>
           <span className={styles.nameFirst}>Parth</span>

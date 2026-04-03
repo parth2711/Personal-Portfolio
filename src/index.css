@@ -55,9 +55,9 @@ body::before {
   content: '';
   position: fixed; inset: 0; z-index: 0;
   background-image:
-    linear-gradient(rgba(163,230,53,0.022) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(163,230,53,0.022) 1px, transparent 1px);
-  background-size: 64px 64px;
+    linear-gradient(rgba(100,140,200,0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(100,140,200,0.018) 1px, transparent 1px);
+  background-size: 72px 72px;
   pointer-events: none;
 }
 
