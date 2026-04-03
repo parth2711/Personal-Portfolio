@@ -2,6 +2,16 @@ import { personalInfo } from '../data/portfolio'
 import styles from './Hero.module.css'
 
 
+const SplitName = ({ text, className }) => (
+  <span className={className}>
+    {text.split('').map((char, i) => (
+      <span key={i} className={styles.letter} style={{ '--i': i }}>
+        {char}
+      </span>
+    ))}
+  </span>
+)
+
 const now = [
   { key: 'Building',   val: 'DevAct',                 sub: 'developer activity aggregator' },
   { key: 'Studying',   val: 'B.Tech CSE — AI & ML',   sub: 'VIT Bhopal · 2024–2028' },
@@ -18,8 +28,8 @@ export default function Hero() {
         <p className={styles.location}>Bhilai, India</p>
 
         <h1 className={styles.name}>
-          <span className={styles.nameFirst}>Parth</span>
-          <span className={styles.nameLast}>Jangir</span>
+          <SplitName text="Parth" className={styles.nameFirst} />
+          <SplitName text="Jangir" className={styles.nameLast} />
         </h1>
 
         <p className={styles.role}>

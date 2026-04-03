@@ -32,6 +32,23 @@
   color: var(--accent);
 }
 
+/* Per-letter hover */
+.letter {
+  display: inline-block;
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
+              color 0.22s ease;
+  transition-delay: calc(var(--i) * 0.03s);
+}
+.name:hover .letter {
+  transform: translateY(-8px);
+}
+.name:hover .nameFirst .letter {
+  color: var(--accent);
+}
+.name:hover .nameLast .letter {
+  color: var(--text);
+}
+
 .role {
   font-family: var(--font-mono); font-size: 0.9rem;
   color: var(--accent2); margin-bottom: 1.5rem;
