@@ -19,15 +19,15 @@ export default function About() {
           {/* ── Left: who I actually am ── */}
           <div className={styles.left}>
             <p className={styles.lead}>
-              I'm Parth — first-year CS at VIT Bhopal.
-              Got serious about programming in class XI, started with C++,
+              I'm Parth, sophomore at VIT Bhopal.
+              started with python,
               and it sort of spiralled from there into ML, full-stack, and competitive programming.
             </p>
 
             <p className={styles.para}>
               I don't have a strong separation between "learning" and "building."
               Most of what I know came from making something, breaking it, and figuring out why.
-              That's how DevAct started — I wanted to track my own progress across platforms
+              That's how DevAct started, I wanted to track my own progress across platforms
               and got tired of opening three different tabs every time.
             </p>
 
@@ -69,7 +69,7 @@ export default function About() {
               <div className={styles.edu}>
                 <div className={styles.eduActive} />
                 <div>
-                  <p className={styles.eduDegree}>B.Tech — Computer Science (AI & ML)</p>
+                  <p className={styles.eduDegree}>B.Tech — Computer Science and Engineering (AI & ML)</p>
                   <p className={styles.eduPlace}>VIT Bhopal University</p>
                   <p className={styles.eduPeriod}>2024 – 2028</p>
                 </div>
@@ -90,7 +90,7 @@ export default function About() {
               <h3 className={styles.blockTitle}>Focus areas</h3>
               <div className={styles.focusList}>
                 {[
-                  { area: 'Algorithms & DSA',   note: 'C++ · competitive programming' },
+                  { area: 'Data Structures and Algorithms',   note: 'C++, Java · competitive programming' },
                   { area: 'Full-stack dev',      note: 'React · FastAPI · PostgreSQL' },
                   { area: 'Machine learning',    note: 'TensorFlow · OpenCV · Scikit-learn' },
                   { area: 'Shipping products',   note: 'idea → code → deployed' },
