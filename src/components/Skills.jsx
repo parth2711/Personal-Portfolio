@@ -86,6 +86,19 @@ export default function Skills() {
             ))}
           </div>
 
+          {/* Currently learning */}
+          <div className={styles.learning}>
+            <span className={styles.learningLabel}>
+              <span className={styles.learningDot} />
+              Currently picking up
+            </span>
+            <div className={styles.learningItems}>
+              {['Next.js', 'Docker', 'System Design'].map(t => (
+                <span key={t} className={styles.learningTag}>{t}</span>
+              ))}
+            </div>
+          </div>
+
           {/* Platforms row */}
           <div className={styles.platformRow}>
             <p className={styles.platformLabel}>Active on</p>
