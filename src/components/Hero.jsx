@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import { personalInfo } from '../data/portfolio'
 import styles from './Hero.module.css'
 
@@ -10,53 +11,101 @@ const SplitName = ({ text, className }) => (
 )
 
 export default function Hero() {
+  const dateRef = useRef(null)
+  useEffect(() => {
+    if (dateRef.current) {
+      dateRef.current.textContent = new Date().toLocaleDateString('en-IN', {
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+      })
+    }
+  }, [])
+
   return (
     <section id="hero" className={styles.hero}>
-      <div className={styles.inner}>
 
-        {/* Top row: location tag */}
-        <p className={styles.meta}>
-          <span className={styles.metaDot} />
-          Bhilai, India
-        </p>
+      {/* Masthead */}
+      <div className={styles.masthead}>
+        <div className={styles.mastheadRule}>
+          <div className={styles.ruleLine} />
+          <span className={styles.ornament}>◆</span>
+          <div className={styles.ruleLine} />
+        </div>
 
-        {/* Name — big, serif, two lines */}
         <h1 className={styles.name}>
           <SplitName text="Parth" className={styles.nameFirst} />
+          {' '}
           <SplitName text="Jangir" className={styles.nameLast} />
         </h1>
 
-        {/* One honest line */}
-        <p className={styles.tagline}>
-          CS student. I write C++, build with React &amp; Python,
-          and ship things I actually use.
+        <p className={styles.sub}>
+          Software Engineer &nbsp;·&nbsp; Full Stack Developer &nbsp;·&nbsp; ML Builder
         </p>
 
-        <div className={styles.actions}>
-          <a
-            href="#projects"
-            className="btn-primary"
-            onClick={e => { e.preventDefault(); document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }) }}
-          >
-            See my work
-          </a>
-          <a href={personalInfo.resumeUrl} download className="btn-ghost">Resume</a>
+        <div className={styles.mastheadRule}>
+          <div className={styles.ruleLine} />
+          <span className={styles.ornament}>◆</span>
+          <div className={styles.ruleLine} />
+        </div>
+      </div>
+
+      {/* Three-column editorial grid */}
+      <div className={styles.grid}>
+
+        {/* Col 1: Who */}
+        <div className={styles.col}>
+          <span className={styles.colLabel}>Who</span>
+          <p className={styles.colBody}>
+            First-year CS student at VIT Bhopal, specialising in AI & ML.
+            Writing C++ since class XI. Building full-stack products
+            and ML systems since then.
+          </p>
+          <p className={styles.colBody} style={{ marginTop: '1rem' }}>
+            Football weekends. Table tennis when someone's free.
+            Codeforces at midnight.
+          </p>
         </div>
 
-        {/* Bottom: current status — sparse, honest */}
-        <div className={styles.status}>
-          <div className={styles.statusItem}>
-            <span className={styles.statusKey}>Building</span>
-            <span className={styles.statusVal}>DevAct — developer activity aggregator</span>
+        {/* Col 2: headline + actions */}
+        <div className={`${styles.col} ${styles.colCenter}`}>
+          <p className={styles.headline}>
+            "I build things end&#8209;to&#8209;end and figure out the details on the way."
+          </p>
+          <div className={styles.actions}>
+            <a
+              href="#projects"
+              className={styles.btnPrimary}
+              onClick={e => { e.preventDefault(); document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }) }}
+            >
+              See Projects
+            </a>
+            <a href={personalInfo.resumeUrl} download className={styles.btnGhost}>
+              Download Resume
+            </a>
           </div>
-          <div className={styles.statusItem}>
-            <span className={styles.statusKey}>Studying</span>
-            <span className={styles.statusVal}>B.Tech CSE (AI & ML), VIT Bhopal · 2024–2028</span>
+        </div>
+
+        {/* Col 3: Now */}
+        <div className={styles.col}>
+          <span className={styles.colLabel}>Now</span>
+          <div className={styles.nowList}>
+            <div className={styles.nowRow}>
+              <span className={styles.nowKey}>Building</span>
+              <span className={styles.nowVal}>DevAct</span>
+            </div>
+            <div className={styles.nowRow}>
+              <span className={styles.nowKey}>Studying</span>
+              <span className={styles.nowVal}>VIT Bhopal · 2024–28</span>
+            </div>
+            <div className={styles.nowRow}>
+              <span className={styles.nowKey}>Grinding</span>
+              <span className={styles.nowVal}>LeetCode · Codeforces</span>
+            </div>
+            <div className={styles.nowRow}>
+              <span className={styles.nowKey}>Open to</span>
+              <span className={styles.nowVal}>Internships</span>
+            </div>
           </div>
-          <div className={styles.statusItem}>
-            <span className={styles.statusKey}>Open to</span>
-            <span className={styles.statusVal}>Internships</span>
-          </div>
+          <p ref={dateRef} className={styles.dateStamp} />
         </div>
 
       </div>

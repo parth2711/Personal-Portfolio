@@ -2,89 +2,62 @@
 html { scroll-behavior: smooth; font-size: 16px; }
 
 :root {
-  --bg:      #0a0a0a;
-  --bg2:     #0f0f0f;
-  --bg3:     #141414;
-  --surface: #1a1a1a;
-  --border:  rgba(255,255,255,0.07);
-  --border2: rgba(255,255,255,0.12);
+  --paper:   #f4f0e8;
+  --paper2:  #ede8dc;
+  --ink:     #1a1208;
+  --ink2:    #3d3428;
+  --muted:   #7a6e5f;
+  --rule:    #1a1208;
+  --rust:    #b83a18;
+  --olive:   #3d5225;
+  --border:  #1a1208;
 
-  --accent:  #c8f135;
-  --blue:    #7dd3fc;
-  --pink:    #f9a8d4;
-
-  --text:    #f0ede8;
-  --text2:   #8a8a8a;
-  --text3:   #555;
-
-  /* Fraunces: editorial serif, optical sizing, Italian variable */
-  --font-head: 'Fraunces', Georgia, serif;
-  --font-body: 'Inter', system-ui, sans-serif;
-  --font-mono: 'DM Mono', 'Courier New', monospace;
-
-  --r: 8px;
-  --r2: 14px;
-  --glow: 0 0 28px rgba(200,241,53,0.22);
+  --font-head: 'Playfair Display', Georgia, serif;
+  --font-body: 'Instrument Sans', system-ui, sans-serif;
+  --font-mono: 'Space Mono', 'Courier New', monospace;
 }
 
 body {
-  background: var(--bg);
-  color: var(--text);
+  background: var(--paper);
+  color: var(--ink);
   font-family: var(--font-body);
   font-size: 1rem;
   line-height: 1.65;
   overflow-x: hidden;
-  cursor: none;
   -webkit-font-smoothing: antialiased;
+  cursor: auto;
 }
-@media (pointer: coarse) { body { cursor: auto; } }
 
-::selection { background: var(--accent); color: #000; }
-::-webkit-scrollbar { width: 2px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--border2); }
-
-/* No grid overlay - completely clean background */
-
-.container { max-width: 1160px; margin: 0 auto; padding: 0 2rem; }
-
-/* Each section has its own padding - not uniform */
-.section { position: relative; z-index: 1; }
-
-/* Buttons */
-.btn-primary {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  background: var(--accent); color: #000;
-  font-family: var(--font-body); font-weight: 600; font-size: 0.875rem;
-  padding: 0.75rem 1.75rem; border-radius: var(--r);
-  text-decoration: none; border: none; cursor: none;
-  transition: opacity 0.2s, transform 0.2s;
-  letter-spacing: 0.01em;
+/* Subtle paper noise */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 1000;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none; opacity: 0.55;
 }
-.btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
 
-.btn-ghost {
-  display: inline-flex; align-items: center; gap: 0.5rem;
-  color: var(--text2); border: 1px solid var(--border2);
-  font-family: var(--font-body); font-weight: 400; font-size: 0.875rem;
-  padding: 0.75rem 1.75rem; border-radius: var(--r);
-  text-decoration: none;
-  transition: color 0.2s, border-color 0.2s;
-}
-.btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.3); }
+::selection { background: var(--ink); color: var(--paper); }
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--paper2); }
+::-webkit-scrollbar-thumb { background: var(--ink2); }
 
-@media (pointer: coarse) { .btn-primary, .btn-ghost { cursor: pointer; } }
+.container { max-width: 1240px; margin: 0 auto; padding: 0 40px; }
+.section { position: relative; }
 
-.mono { font-family: var(--font-mono); }
-
-/* Reveal animation - used selectively, not on everything */
+/* Reveal */
 .reveal {
-  opacity: 0; transform: translateY(18px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0; transform: translateY(14px);
+  transition: opacity 0.75s ease, transform 0.75s ease;
 }
 .reveal.in { opacity: 1; transform: none; }
 
+/* Shared typography */
+.label {
+  font-family: var(--font-mono); font-size: 9px;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--muted); display: block;
+}
+
 @media (max-width: 768px) {
-  .container { padding: 0 1.25rem; }
+  .container { padding: 0 20px; }
 }
