@@ -55,13 +55,10 @@ export default function Hero() {
         <div className={styles.col}>
           <span className={styles.colLabel}>Who</span>
           <p className={styles.colBody}>
-            First-year CS student at VIT Bhopal, specialising in AI & ML.
-            Writing C++ since class XI. Building full-stack products
-            and ML systems since then.
+            Third year B. Tech. student at VIT Bhopal. Pursuing degree in Computer Science.
           </p>
           <p className={styles.colBody} style={{ marginTop: '1rem' }}>
-            Football weekends. Table tennis when someone's free.
-            Codeforces at midnight.
+            Eye catching and minimal UIs, efficient backend systems, end to end ML apps, other interests are football, table tennis, competitive programming.
           </p>
         </div>
 

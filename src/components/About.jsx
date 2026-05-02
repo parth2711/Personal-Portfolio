@@ -22,7 +22,7 @@ export default function About() {
             I've been hooked since."
           </p>
           <p className={styles.bodyText}>
-            I'm a first-year Computer Science student at VIT Bhopal.
+            I'm a Third year Computer Science student at VIT Bhopal.
             My work sits at the practical end of things. I care less about what something
             is called and more on about whether it actually works and can someone use it to increase productivity.
           </p>
