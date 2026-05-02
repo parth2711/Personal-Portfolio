@@ -18,19 +18,18 @@ export default function About() {
         {/* Bio */}
         <div className={styles.bioCol}>
           <p className={styles.pullquote}>
-            "Got serious about programming in class XI. It started with C++ and a
-            competitive programming problem I couldn't solve. That problem took three days.
+            "Got serious about programming in 11th standard. Started with Python and tried to learn basic game development on unity, lost interest in game development, and moved on to machine learning and full stack development.
             I've been hooked since."
           </p>
           <p className={styles.bodyText}>
-            I'm a first-year CS student at VIT Bhopal (AI & ML specialisation).
-            My work sits at the practical end of things — I care less about what something
-            is called and more about whether it actually works and whether someone can use it.
+            I'm a first-year Computer Science student at VIT Bhopal.
+            My work sits at the practical end of things. I care less about what something
+            is called and more on about whether it actually works and can someone use it to increase productivity.
           </p>
           <p className={styles.bodyText}>
             DevAct came from a simple problem: I had to open three tabs every time I wanted
             to check my own progress. So I built a dashboard that shows GitHub, LeetCode,
-            and Codeforces in one place. Most of my projects start like that.
+            and Codeforces in one place. This is how most of my projects start like.
           </p>
           <p className={styles.bodyText}>
             Outside: football on weekends, table tennis when I can find a partner,
@@ -81,7 +80,7 @@ export default function About() {
 
           <span className={styles.colLabel} style={{ marginTop: '2rem' }}>Focus</span>
           <p className={styles.focusText}>
-            Algorithms & DSA &mdash; C++ competitive programming
+            Algorithms & DSA &mdash; Java C++ competitive programming
           </p>
           <p className={styles.focusText}>
             Full-stack &mdash; React · FastAPI · PostgreSQL

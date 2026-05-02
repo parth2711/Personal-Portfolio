@@ -7,7 +7,7 @@ export default function Footer() {
       <div className={styles.top}>
         <span>© {new Date().getFullYear()} Parth Jangir</span>
         <span className={styles.orn}>❧</span>
-        <span>Built with React & Vite · Bhilai, India</span>
+        <span>Built with React & Vite</span>
       </div>
       <div className={styles.links}>
         {[
