@@ -1,45 +1,35 @@
 import { personalInfo } from '../data/portfolio'
 import styles from './Hero.module.css'
 
-
 const SplitName = ({ text, className }) => (
   <span className={className}>
-    {text.split('').map((char, i) => (
-      <span key={i} className={styles.letter} style={{ '--i': i }}>
-        {char}
-      </span>
+    {text.split('').map((ch, i) => (
+      <span key={i} className={styles.letter} style={{ '--i': i }}>{ch}</span>
     ))}
   </span>
 )
 
-const now = [
-  { key: 'Building',   val: 'DevAct',                 sub: 'developer activity aggregator' },
-  { key: 'Studying',   val: 'B.Tech CSE — AI & ML',   sub: 'VIT Bhopal · 2024–2028' },
-  { key: 'Competing',  val: 'Codeforces · LeetCode',  sub: 'Div. 3/4 · 200+ problems' },
-  { key: 'Open to',    val: 'Internships',             sub: 'jangirparth@gmail.com' },
-]
-
 export default function Hero() {
   return (
     <section id="hero" className={styles.hero}>
+      <div className={styles.inner}>
 
-      {/* ── Left ── */}
-      <div className={styles.left}>
-        <p className={styles.location}>Bhilai, India</p>
+        {/* Top row: location tag */}
+        <p className={styles.meta}>
+          <span className={styles.metaDot} />
+          Bhilai, India
+        </p>
 
+        {/* Name — big, serif, two lines */}
         <h1 className={styles.name}>
           <SplitName text="Parth" className={styles.nameFirst} />
           <SplitName text="Jangir" className={styles.nameLast} />
         </h1>
 
-        <p className={styles.role}>
-          Software Engineer &amp; ML Builder
-        </p>
-
-        <p className={styles.desc}>
-          I write C++ for algorithms, Python for machine learning,
-          and React for the products that tie it all together.
-          Currently a CS student at VIT Bhopal — building in public.
+        {/* One honest line */}
+        <p className={styles.tagline}>
+          CS student. I write C++, build with React &amp; Python,
+          and ship things I actually use.
         </p>
 
         <div className={styles.actions}>
@@ -49,39 +39,26 @@ export default function Hero() {
             onClick={e => { e.preventDefault(); document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' }) }}
           >
             See my work
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
           </a>
           <a href={personalInfo.resumeUrl} download className="btn-ghost">Resume</a>
         </div>
-      </div>
 
-      {/* ── Right: status panel ── */}
-      <div className={styles.right}>
-        <div className={styles.statusPanel}>
-          <p className={styles.statusTitle}>Now</p>
-          <div className={styles.statusList}>
-            {now.map(item => (
-              <div key={item.key} className={styles.statusRow}>
-                <span className={styles.statusKey}>{item.key}</span>
-                <div className={styles.statusVal}>
-                  <span className={styles.statusMain}>{item.val}</span>
-                  <span className={styles.statusSub}>{item.sub}</span>
-                </div>
-              </div>
-            ))}
+        {/* Bottom: current status — sparse, honest */}
+        <div className={styles.status}>
+          <div className={styles.statusItem}>
+            <span className={styles.statusKey}>Building</span>
+            <span className={styles.statusVal}>DevAct — developer activity aggregator</span>
           </div>
-          <div className={styles.statusFooter}>
-            <span className={styles.dot} />
-            <span>Open to work</span>
+          <div className={styles.statusItem}>
+            <span className={styles.statusKey}>Studying</span>
+            <span className={styles.statusVal}>B.Tech CSE (AI & ML), VIT Bhopal · 2024–2028</span>
+          </div>
+          <div className={styles.statusItem}>
+            <span className={styles.statusKey}>Open to</span>
+            <span className={styles.statusVal}>Internships</span>
           </div>
         </div>
 
-        <div className={styles.scrollHint}>
-          <div className={styles.scrollLine} />
-          <span className="mono">scroll</span>
-        </div>
       </div>
     </section>
   )

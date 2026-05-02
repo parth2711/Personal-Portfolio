@@ -1,139 +1,90 @@
-/* ── Reset ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
 
-/* ── Variables ── */
 :root {
-  --bg:       #050810;
-  --bg2:      #080d1a;
-  --bg3:      #0d1528;
-  --surface:  #111827;
-  --surface2: #1a2540;
-  --border:   rgba(100,180,255,0.10);
-  --border2:  rgba(100,180,255,0.20);
+  --bg:      #0a0a0a;
+  --bg2:     #0f0f0f;
+  --bg3:     #141414;
+  --surface: #1a1a1a;
+  --border:  rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.12);
 
-  --accent:  #a3e635;
-  --accent2: #38bdf8;
-  --accent3: #f472b6;
-  --accent4: #fb923c;
+  --accent:  #c8f135;
+  --blue:    #7dd3fc;
+  --pink:    #f9a8d4;
 
-  --text:  #e2e8f0;
-  --text2: #94a3b8;
-  --text3: #64748b;
+  --text:    #f0ede8;
+  --text2:   #8a8a8a;
+  --text3:   #555;
 
-  --font-display: 'Syne', sans-serif;
-  --font-mono:    'JetBrains Mono', monospace;
-  --font-body:    'Outfit', sans-serif;
+  /* Fraunces: editorial serif, optical sizing, Italian variable */
+  --font-head: 'Fraunces', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'DM Mono', 'Courier New', monospace;
 
-  --r:   12px;
-  --r2:  20px;
-  --glow: 0 0 24px rgba(163,230,53,0.28);
+  --r: 8px;
+  --r2: 14px;
+  --glow: 0 0 28px rgba(200,241,53,0.22);
 }
 
 body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-body);
-  line-height: 1.7;
+  font-size: 1rem;
+  line-height: 1.65;
   overflow-x: hidden;
   cursor: none;
+  -webkit-font-smoothing: antialiased;
 }
 @media (pointer: coarse) { body { cursor: auto; } }
 
 ::selection { background: var(--accent); color: #000; }
-
-::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar { width: 2px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: rgba(163,230,53,0.3); border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: var(--border2); }
 
-/* Very subtle neutral grid — no green tint */
-body::before {
-  content: '';
-  position: fixed; inset: 0; z-index: 0;
-  background-image:
-    linear-gradient(rgba(100,140,200,0.016) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(100,140,200,0.016) 1px, transparent 1px);
-  background-size: 72px 72px;
-  pointer-events: none;
-}
+/* No grid overlay - completely clean background */
 
-/* ── Layout ── */
-.container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
-.section   { position: relative; z-index: 1; padding: 9rem 0; }
+.container { max-width: 1160px; margin: 0 auto; padding: 0 2rem; }
 
-/* ── Section header — two-line style used by About, Skills, Certs, Contact ── */
-.section-header {
-  display: flex; align-items: center; gap: 1.2rem;
-  margin-bottom: 5rem;
-}
-.section-number {
-  font-family: var(--font-mono);
-  font-size: 0.65rem; color: var(--accent);
-  letter-spacing: 0.18em; opacity: 0.6;
-}
-.section-title {
-  font-family: var(--font-display);
-  font-size: clamp(1.9rem, 3vw, 2.6rem);
-  font-weight: 800; letter-spacing: -0.03em;
-  color: var(--text);
-}
-.section-line {
-  flex: 1; height: 1px;
-  background: linear-gradient(90deg, var(--border2), transparent);
-}
+/* Each section has its own padding - not uniform */
+.section { position: relative; z-index: 1; }
 
-/* ── Single-line style used by Projects ── */
-.section-label {
-  font-family: var(--font-mono);
-  font-size: 0.65rem; color: var(--accent);
-  text-transform: uppercase; letter-spacing: 0.2em;
-  margin-bottom: 0.75rem; display: block;
-}
-.section-heading {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 3.5vw, 2.8rem);
-  font-weight: 800; letter-spacing: -0.03em;
-  color: var(--text); margin-bottom: 4rem;
-}
-
-/* ── Buttons ── */
+/* Buttons */
 .btn-primary {
-  display: inline-flex; align-items: center; gap: 0.55rem;
+  display: inline-flex; align-items: center; gap: 0.5rem;
   background: var(--accent); color: #000;
-  font-family: var(--font-display); font-weight: 700; font-size: 0.88rem;
-  padding: 0.82rem 1.9rem; border-radius: 10px;
+  font-family: var(--font-body); font-weight: 600; font-size: 0.875rem;
+  padding: 0.75rem 1.75rem; border-radius: var(--r);
   text-decoration: none; border: none; cursor: none;
-  transition: transform 0.2s, box-shadow 0.3s;
+  transition: opacity 0.2s, transform 0.2s;
+  letter-spacing: 0.01em;
 }
-.btn-primary:hover { transform: translateY(-2px); box-shadow: var(--glow); }
+.btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
 
 .btn-ghost {
-  display: inline-flex; align-items: center; gap: 0.55rem;
-  color: var(--text); border: 1px solid var(--border2);
-  font-family: var(--font-display); font-weight: 600; font-size: 0.88rem;
-  padding: 0.82rem 1.9rem; border-radius: 10px; text-decoration: none;
-  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  color: var(--text2); border: 1px solid var(--border2);
+  font-family: var(--font-body); font-weight: 400; font-size: 0.875rem;
+  padding: 0.75rem 1.75rem; border-radius: var(--r);
+  text-decoration: none;
+  transition: color 0.2s, border-color 0.2s;
 }
-.btn-ghost:hover { border-color: var(--accent); color: var(--accent); background: rgba(163,230,53,0.04); }
+.btn-ghost:hover { color: var(--text); border-color: rgba(255,255,255,0.3); }
 
 @media (pointer: coarse) { .btn-primary, .btn-ghost { cursor: pointer; } }
 
-/* ── Helpers ── */
 .mono { font-family: var(--font-mono); }
 
-/* ── Fade-up reveal ── */
-.fade-up {
-  opacity: 0; transform: translateY(22px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+/* Reveal animation - used selectively, not on everything */
+.reveal {
+  opacity: 0; transform: translateY(18px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.fade-up.visible { opacity: 1; transform: translateY(0); }
-
-/* ── Blink ── */
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-.blink { animation: blink 1s step-end infinite; }
+.reveal.in { opacity: 1; transform: none; }
 
 @media (max-width: 768px) {
-  .section { padding: 5rem 0; }
-  .section-header { margin-bottom: 2.75rem; }
-  .section-heading { margin-bottom: 2.5rem; }
+  .container { padding: 0 1.25rem; }
 }

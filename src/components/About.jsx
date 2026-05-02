@@ -8,102 +8,79 @@ export default function About() {
   return (
     <section id="about" className={`section ${styles.about}`}>
       <div className="container">
-        <div className="section-header">
-          <span className="section-number mono">01</span>
-          <h2 className="section-title">About</h2>
-          <div className="section-line" />
-        </div>
 
-        <div ref={ref} className={`${styles.grid} fade-up ${inView ? 'visible' : ''}`}>
+        <div ref={ref} className={`${styles.layout} reveal ${inView ? 'in' : ''}`}>
 
-          {/* ── Left: who I actually am ── */}
+          {/* Left: the number + heading */}
           <div className={styles.left}>
-            <p className={styles.lead}>
-              I'm Parth, sophomore at VIT Bhopal.
-              started with python,
-              and it sort of spiralled from there into ML, full-stack, and competitive programming.
-            </p>
-
-            <p className={styles.para}>
-              I don't have a strong separation between "learning" and "building."
-              Most of what I know came from making something, breaking it, and figuring out why.
-              That's how DevAct started, I wanted to track my own progress across platforms
-              and got tired of opening three different tabs every time.
-            </p>
-
-            <p className={styles.para}>
-              I'm comfortable across the stack: C++ for algorithms, Python for data and backends,
-              React when something needs to be usable. I try not to make things more complicated
-              than they need to be.
-            </p>
-
-            <p className={styles.para}>
-              Off the screen: I play football on weekends, pick up table tennis when someone's
-              free, and occasionally do a Codeforces round late on a Friday.
-            </p>
-
-            <div className={styles.links}>
-              {[
-                { label: 'GitHub',     href: personalInfo.github },
-                { label: 'LinkedIn',   href: personalInfo.linkedin },
-                { label: 'LeetCode',   href: personalInfo.leetcode },
-                { label: 'Codeforces', href: personalInfo.codeforces },
-              ].map(s => (
-                <a key={s.label} href={s.href} target="_blank" rel="noreferrer" className={styles.link}>
-                  {s.label}
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/>
-                  </svg>
-                </a>
-              ))}
-            </div>
+            <span className={styles.num}>01</span>
+            <h2 className={styles.heading}>About</h2>
           </div>
 
-          {/* ── Right: education + specifics ── */}
+          {/* Right: actual content — two columns */}
           <div className={styles.right}>
+            <div className={styles.bio}>
+              <p>
+                I'm Parth — first-year CS at VIT Bhopal. Got into programming
+                in class XI with C++, and the thing that kept me going was
+                that every problem had a clean solution if you found the right angle.
+                That's still what I like about it.
+              </p>
+              <p>
+                I don't have a clean separation between "backend" and "frontend" or
+                "ML" and "product." I pick up whatever the thing needs. Right now
+                that means React for UIs, FastAPI for backends, TensorFlow when
+                there's a model involved, and C++ for anything that needs to be fast.
+              </p>
+              <p>
+                DevAct came from a simple annoyance: I had to check GitHub,
+                LeetCode, and Codeforces separately to understand what I'd
+                actually done that week. So I built one dashboard that shows all of it.
+                That's usually how my projects start.
+              </p>
+              <p>
+                Off the screen: I play football on weekends. Sometimes table tennis.
+                Occasionally a Codeforces round at midnight when I should be sleeping.
+              </p>
 
-            {/* Education block */}
-            <div className={styles.block}>
-              <h3 className={styles.blockTitle}>Education</h3>
-
-              <div className={styles.edu}>
-                <div className={styles.eduActive} />
-                <div>
-                  <p className={styles.eduDegree}>B.Tech — Computer Science and Engineering (AI & ML)</p>
-                  <p className={styles.eduPlace}>VIT Bhopal University</p>
-                  <p className={styles.eduPeriod}>2024 – 2028</p>
-                </div>
-              </div>
-
-              <div className={styles.edu} style={{ marginTop: '1.25rem' }}>
-                <div className={styles.eduDot} />
-                <div>
-                  <p className={styles.eduDegree}>Senior Secondary — Science (Class XII)</p>
-                  <p className={styles.eduPlace}>Delhi Public School, Bhilai</p>
-                  <p className={styles.eduPeriod}>2010 – 2024</p>
-                </div>
-              </div>
-            </div>
-
-            {/* What I focus on */}
-            <div className={styles.block}>
-              <h3 className={styles.blockTitle}>Focus areas</h3>
-              <div className={styles.focusList}>
+              <div className={styles.links}>
                 {[
-                  { area: 'Data Structures and Algorithms',   note: 'C++, Java · competitive programming' },
-                  { area: 'Full-stack dev',      note: 'React · FastAPI · PostgreSQL' },
-                  { area: 'Machine learning',    note: 'TensorFlow · OpenCV · Scikit-learn' },
-                  { area: 'Shipping products',   note: 'idea → code → deployed' },
-                ].map(f => (
-                  <div key={f.area} className={styles.focusRow}>
-                    <span className={styles.focusArea}>{f.area}</span>
-                    <span className={styles.focusNote}>{f.note}</span>
-                  </div>
+                  { label: 'GitHub',     href: personalInfo.github },
+                  { label: 'LinkedIn',   href: personalInfo.linkedin },
+                  { label: 'LeetCode',   href: personalInfo.leetcode },
+                  { label: 'Codeforces', href: personalInfo.codeforces },
+                ].map(s => (
+                  <a key={s.label} href={s.href} target="_blank" rel="noreferrer" className={styles.link}>
+                    {s.label} ↗
+                  </a>
                 ))}
               </div>
             </div>
 
+            <div className={styles.sidebar}>
+              <div className={styles.sideBlock}>
+                <p className={styles.sideLabel}>Education</p>
+                <p className={styles.sideMain}>B.Tech CSE — AI & ML</p>
+                <p className={styles.sideSub}>VIT Bhopal · 2024–2028</p>
+              </div>
+              <div className={styles.sideBlock}>
+                <p className={styles.sideLabel}>Before that</p>
+                <p className={styles.sideMain}>Delhi Public School, Bhilai</p>
+                <p className={styles.sideSub}>Class XII · 2010–2024</p>
+              </div>
+              <div className={styles.sideBlock}>
+                <p className={styles.sideLabel}>Competing on</p>
+                <p className={styles.sideMain}>LeetCode · Codeforces</p>
+                <p className={styles.sideSub}>200+ problems</p>
+              </div>
+              <div className={styles.sideBlock}>
+                <p className={styles.sideLabel}>Currently building</p>
+                <p className={styles.sideMain}>DevAct</p>
+                <p className={styles.sideSub}>developer activity aggregator</p>
+              </div>
+            </div>
           </div>
+
         </div>
       </div>
     </section>

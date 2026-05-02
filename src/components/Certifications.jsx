@@ -4,21 +4,18 @@ import styles from './Certifications.module.css'
 const certs = [
   {
     title: 'Python for Data Science & Machine Learning Bootcamp',
-    issuer: 'Udemy',
-    year: '2024',
-    skills: ['NumPy', 'Pandas', 'Scikit-learn', 'Matplotlib'],
+    issuer: 'Udemy', year: '2024',
+    topics: ['NumPy', 'Pandas', 'Scikit-learn', 'Matplotlib', 'Seaborn'],
   },
   {
     title: 'The Nuts and Bolts of Machine Learning',
-    issuer: 'Google',
-    year: '2024',
-    skills: ['ML theory', 'Model evaluation', 'Feature engineering'],
+    issuer: 'Google', year: '2024',
+    topics: ['ML theory', 'Model evaluation', 'Feature engineering'],
   },
   {
     title: 'Beginning C++ Programming — From Beginner to Beyond',
-    issuer: 'Udemy',
-    year: '2023',
-    skills: ['C++17', 'OOP', 'STL', 'Memory management'],
+    issuer: 'Udemy', year: '2023',
+    topics: ['C++17', 'OOP', 'STL', 'Memory management'],
   },
 ]
 
@@ -26,35 +23,29 @@ export default function Certifications() {
   const [ref, inView] = useInView()
 
   return (
-    <section id="certifications" className={`section ${styles.certs}`}>
+    <section id="certifications" className={`section ${styles.section}`}>
       <div className="container">
-        <div className="section-header">
-          <span className="section-number mono">04</span>
-          <h2 className="section-title">Certifications</h2>
-          <div className="section-line" />
+
+        <div className={styles.header}>
+          <span className={styles.num}>04</span>
+          <h2 className={styles.heading}>Certifications</h2>
         </div>
 
-        <div ref={ref} className={`${styles.list} fade-up ${inView ? 'visible' : ''}`}>
+        <div ref={ref} className={`${styles.list} reveal ${inView ? 'in' : ''}`}>
           {certs.map((c, i) => (
             <div key={i} className={styles.row}>
-              <div className={styles.left}>
+              <div className={styles.meta}>
                 <span className={styles.issuer}>{c.issuer}</span>
                 <span className={styles.year}>{c.year}</span>
               </div>
-              <div className={styles.center}>
-                <h3 className={styles.title}>{c.title}</h3>
-                <div className={styles.skills}>
-                  {c.skills.map(s => (
-                    <span key={s} className={styles.skill}>{s}</span>
-                  ))}
-                </div>
-              </div>
-              <div className={styles.right}>
-                <span className={styles.badge}>Completed</span>
+              <h3 className={styles.title}>{c.title}</h3>
+              <div className={styles.topics}>
+                {c.topics.map(t => <span key={t} className={styles.topic}>{t}</span>)}
               </div>
             </div>
           ))}
         </div>
+
       </div>
     </section>
   )

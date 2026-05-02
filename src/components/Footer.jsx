@@ -5,25 +5,18 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.inner}>
-        <p className={styles.name}>Parth Jangir</p>
-
+        <p className={styles.name}>Parth Jangir · {new Date().getFullYear()}</p>
         <div className={styles.links}>
           {[
-            { label: 'GitHub',     href: personalInfo.github },
-            { label: 'LinkedIn',   href: personalInfo.linkedin },
-            { label: 'LeetCode',   href: personalInfo.leetcode },
-            { label: 'Codeforces', href: personalInfo.codeforces },
-            { label: 'Email',      href: `mailto:${personalInfo.email}` },
-          ].map(l => (
-            <a key={l.label} href={l.href} target="_blank" rel="noreferrer" className={styles.link}>
-              {l.label}
-            </a>
+            { l: 'GitHub',     h: personalInfo.github },
+            { l: 'LinkedIn',   h: personalInfo.linkedin },
+            { l: 'LeetCode',   h: personalInfo.leetcode },
+            { l: 'Codeforces', h: personalInfo.codeforces },
+            { l: 'Email',      h: `mailto:${personalInfo.email}` },
+          ].map(({ l, h }) => (
+            <a key={l} href={h} target="_blank" rel="noreferrer" className={styles.link}>{l}</a>
           ))}
         </div>
-
-        <p className={styles.copy}>
-          {new Date().getFullYear()} · Built with React & Vite
-        </p>
       </div>
     </footer>
   )
