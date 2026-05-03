@@ -73,11 +73,11 @@ export default function Contact() {
               <div className={styles.formRow}>
                 <div className={styles.field}>
                   <label className={styles.label}>Your Name</label>
-                  <input className={styles.input} placeholder="Arjun Sharma" value={fields.name} onChange={set('name')} />
+                  <input className={styles.input} placeholder="name" value={fields.name} onChange={set('name')} />
                 </div>
                 <div className={styles.field}>
                   <label className={styles.label}>Email Address</label>
-                  <input className={styles.input} type="email" placeholder="arjun@example.com" value={fields.email} onChange={set('email')} />
+                  <input className={styles.input} type="email" placeholder="name@example.com" value={fields.email} onChange={set('email')} />
                 </div>
               </div>
               <div className={styles.field}>
